@@ -506,18 +506,19 @@ auto results_show_userout_one(std::FILE * output_handle, struct hit const * hits
         case 42: /* tihi */
           fprintf(output_handle, "%" PRId64, (hits != nullptr) ? tseqlen - hits->trim_t_right : 0);
           break;
-	case 43: // qseq - full query sequence
-	  {
-	    char const * qseq = (hits->strand != 0) ? qsequence_rc : qsequence;
-	    fprintf(fp, "%s", qseq);
-	  }
-	  break;
-	case 44: // tseq - full target sequence  
-	  {
-	    char const * tseq = db_getsequence(hits->target);
-	    fprintf(fp, "%s", tseq);
-	  }
-	  break;
+	case 43: /* qseq - full query sequence */
+          {
+            char const * qseq = (hits != nullptr) ? 
+              ((hits->strand != 0) ? qsequence_rc : qsequence) : "";
+            fprintf(output_handle, "%s", qseq);
+          }
+          break;
+	case 44: /* tseq - full target sequence */
+          {
+            char const * tseq = (hits != nullptr) ? tsequence : "";
+            fprintf(output_handle, "%s", tseq);
+          }
+          break;
         }
     }
   fprintf(output_handle, "\n");
