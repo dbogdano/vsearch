@@ -110,6 +110,8 @@ static const char * userfields_names[] =
     "qihi",
     "tilo",
     "tihi",   // 42
+    "qseq",   // 43 - Full query sequence (ungapped)
+    "tseq",   // 44 - Full target sequence (ungapped)
     nullptr
   };
 
